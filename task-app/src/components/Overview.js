@@ -5,12 +5,17 @@ class Overview extends Component {
   }
 
   render() {
-    const { taskArray } = this.props;
+    const { deleteTask, taskArray } = this.props;
 
     return (
       <div>
         {taskArray.map((taskObject) => {
-          return <div>{taskObject.task}</div>;
+          return (
+            <div>
+              <span>{taskObject.task}</span>
+              <button onClick={() => deleteTask(taskObject.id)}>-</button>
+            </div>
+          );
         })}
       </div>
     );

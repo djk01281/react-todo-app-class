@@ -5,7 +5,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      taskArray: [{ task: "sth", id: 1 }],
+      taskArray: [],
     };
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
@@ -18,7 +18,7 @@ class App extends Component {
 
   deleteTask(idNumber) {
     this.setState({
-      taskArray: this.taskArray.filter((item) => item.id !== idNumber),
+      taskArray: this.state.taskArray.filter((item) => item.id !== idNumber),
     });
   }
 
@@ -27,7 +27,10 @@ class App extends Component {
       <div>
         This is App
         <Input addTask={this.addTask}></Input>
-        <Overview taskArray={this.state.taskArray} />
+        <Overview
+          deleteTask={this.deleteTask}
+          taskArray={this.state.taskArray}
+        />
       </div>
     );
   }
@@ -36,14 +39,13 @@ class App extends Component {
 class Input extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "", task: {} };
+    this.state = { text: "", task: {}, id: 0 };
   }
 
   render() {
     const { addTask } = this.props;
     return (
       <div>
-        <div>{this.state.task.task}</div>
         <input
           type="text"
           onChange={(e) => {
@@ -52,8 +54,9 @@ class Input extends Component {
         />
         <button
           onClick={(e) => {
-            this.setState({ task: { task: this.state.text, id: 0 } });
-            addTask(this.state.task);
+            this.setState({ id: this.state.id + 1 });
+            //!this.setState({task: {task: this.state.text, id:this.state.id}}) not working
+            addTask({ task: this.state.text, id: this.state.id });
           }}
         >
           +
