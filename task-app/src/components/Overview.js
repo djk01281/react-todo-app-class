@@ -12,7 +12,7 @@ class Overview extends Component {
         {taskArray.map((taskObject) => {
           return (
             <div>
-              <span>{taskObject.task}</span>
+              <span>{taskObject.taskName}</span>
               <button onClick={() => deleteTask(taskObject.id)}>-</button>
             </div>
           );
