@@ -28,8 +28,8 @@ class App extends Component {
         const newArray = this.taskArray;
         newArray[i].taskName = taskName;
         this.setState({ taskArray: newArray });
-        return null;
       }
+      return null;
     });
   }
 
