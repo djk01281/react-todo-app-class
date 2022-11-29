@@ -25,9 +25,10 @@ class App extends Component {
   editTask(taskName, idNumber) {
     this.state.taskArray.map((taskObject, i) => {
       if (taskObject.id === idNumber) {
-        const newArray = this.taskArray;
+        const newArray = this.state.taskArray;
         newArray[i].taskName = taskName;
         this.setState({ taskArray: newArray });
+        return null;
       }
       return null;
     });
