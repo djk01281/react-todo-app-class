@@ -9,6 +9,7 @@ class App extends Component {
     };
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+    this.editTask = this.editTask.bind(this);
   }
   addTask(taskObject) {
     this.setState({
@@ -21,6 +22,16 @@ class App extends Component {
       taskArray: this.state.taskArray.filter((item) => item.id !== idNumber),
     });
   }
+  editTask(taskName, idNumber) {
+    this.state.taskArray.map((taskObject, i) => {
+      if (taskObject.id === idNumber) {
+        const newArray = this.taskArray;
+        newArray[i].taskName = taskName;
+        this.setState({ taskArray: newArray });
+        return null;
+      }
+    });
+  }
 
   render() {
     return (
@@ -29,6 +40,7 @@ class App extends Component {
         <Input addTask={this.addTask} taskArray={this.state.taskArray}></Input>
         <Overview
           deleteTask={this.deleteTask}
+          editTask={this.editTask}
           taskArray={this.state.taskArray}
         />
       </div>
